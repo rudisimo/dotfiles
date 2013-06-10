@@ -1,6 +1,8 @@
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
     colorflag="--color"
+elif ls -G > /dev/null 2>&1; then # OSX `ls`
+    colorflag="-G"
 fi
 
 # List all files colorized in long format
