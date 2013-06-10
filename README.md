@@ -7,19 +7,19 @@
 You can clone the repository wherever you want. The `bootstrap.sh` script will pull in the latest version and copy the files to your home folder.
 
 ```bash
-git clone https://github.com/rudisimo/dotfiles.git && cd dotfiles && source bootstrap.sh
+git clone https://github.com/rudisimo/dotfiles.git && cd dotfiles && sh bootstrap.sh
 ```
 
 To update, `cd` into your local `dotfiles` repository and then:
 
 ```bash
-set -- -u; source bootstrap.sh
+sh bootstrap.sh -u
 ```
 
 Alternatively, to update while avoiding the confirmation prompt:
 
 ```bash
-set -- -uf; source bootstrap.sh
+sh bootstrap.sh -uf
 ```
 
 ### Without using Git
