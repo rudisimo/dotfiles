@@ -7,7 +7,7 @@
 To install these dotfiles without Git:
 
 ```bash
-cd ~; curl -#L https://github.com/rudisimo/dotfiles/tarball/master | tar -xzv --strip-components 1 --exclude={README.md,LICENSE-MIT.txt}
+cd ~; curl -#L https://github.com/rudisimo/dotfiles/tarball/master | tar -xzv --strip-components 1 --exclude={README.md,LICENSE-MIT.txt}; source .profile
 ```
 
 To update later on, just run that command again.
@@ -35,7 +35,7 @@ PATH=$PATH:$EC2_HOME/bin
 PATH=$PATH:$ANDROID_SDK/platform-tools:$ANDROID_SDK/tools
 ```
 
-You could also use `~/.extra` to change settings, functions and aliases from my dotfiles repository. It’s probably better to [fork this repository](https://github.com/rudisimo/dotfiles/fork_select) instead, though.
+You could also use `~/.extra` to change settings, functions and aliases from my dotfiles repository. It’s probably better to [fork this repository](https://github.com/rudisimo/dotfiles/fork) instead, though.
 
 ## Feedback
 
@@ -43,7 +43,7 @@ Bugs and feature request are tracked on [GitHub](https://github.com/rudisimo/dot
 
 ## Author
 
-[![twitter/rudisimo](http://gravatar.com/avatar/e5214718b36ce8a431ecfc7855f0e969?s=24)](http://twitter.com/rudisimo "Follow @rudisimo on Twitter") [Rodolfo Puig](http://puig.io/)
+[![twitter/rudisimo](http://gravatar.com/avatar/e5214718b36ce8a431ecfc7855f0e969?s=16)](http://twitter.com/rudisimo "Follow @rudisimo on Twitter") [Rodolfo Puig](http://puig.io/)
 
 ## License
 
