@@ -18,11 +18,11 @@ Bugs and feature request are tracked on [GitHub](https://github.com/rudisimo/dot
 
 ## Author
 
-[![twitter/rudisimo](http://gravatar.com/avatar/e5214718b36ce8a431ecfc7855f0e969?s=16)](http://twitter.com/rudisimo "Follow @rudisimo on Twitter") [Rodolfo Puig](http://puig.io/)
+[![twitter/rudisimo](http://gravatar.com/avatar/e5214718b36ce8a431ecfc7855f0e969?s=24)](http://twitter.com/rudisimo "Follow @rudisimo on Twitter") [Rodolfo Puig](http://puig.io/)
 
 ## License
 
-This package is licensed under the MIT License - see the LICENSE file for details.
+This package is licensed under the MIT License - see the LICENSE-MIT.txt file for details.
 
 ## Acknowledgements
 
