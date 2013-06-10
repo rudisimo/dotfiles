@@ -14,12 +14,10 @@ EOF
 }
 
 syncfiles() {
-  if [ ! -d "$HOME/.dotfiles-backup" ]; then
-    mkdir -p "$HOME/.dotfiles-backup"
-  fi
+  [ ! -d "$HOME/.dotfiles-backup" ] && mkdir -p "$HOME/.dotfiles-backup"
   rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" \
         --exclude "README.md" --exclude "LICENSE-MIT.txt" -avb --no-perms \
-        --backup-dir="$HOME/.dotfiles-backup/" . "$HOME/test"
+        --backup-dir="$HOME/.dotfiles-backup" . "$HOME"
   [ -e "$HOME/.profile" ] && source "$HOME/.profile"
 }
 
