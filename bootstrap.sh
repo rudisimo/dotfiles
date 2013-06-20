@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# make sure that getopts works while sourcing the script
+OPTIND=1
+
+# usage description
 usage() {
   cat << EOF
 usage: $0 options
@@ -13,43 +17,47 @@ OPTIONS:
 EOF
 }
 
+# synchronize files to home directory
 syncfiles() {
-  [ ! -d "$HOME/.dotfiles-backup" ] && mkdir -p "$HOME/.dotfiles-backup"
+  local backupdir="$HOME/.dotfiles-$(date +%Y%m%d-%H%M%S)"
+  [ ! -d "$backupdir" ] && mkdir -p "$backupdir"
   rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" \
         --exclude "README.md" --exclude "LICENSE-MIT.txt" -avb --no-perms \
-        --backup-dir="$HOME/.dotfiles-backup" . "$HOME"
+        --backup-dir="$backupdir" . "$HOME"
+  [ "$(ls -A $backupdir)" ] && rm -qrf "$backupdir"
   [ -e "$HOME/.profile" ] && source "$HOME/.profile"
 }
 
+# update the dotfiles repository
 updaterepo() {
   git fetch -q origin >/dev/null
   git pull -q origin master >/dev/null
 }
 
-optforce=
-while getopts "h::fu" option; do
+OPTFORCED=
+while getopts "::hfu" option; do
   case "$option" in
     f)
-      optforce=1
+      OPTFORCED=1
       ;;
     u)
       updaterepo
       ;;
     h)
       usage
-      exit
+      return
       ;;
     \?)
       usage
-      exit 1
+      return 1
       ;;
   esac
 done
 
-if [ -n "$optforce" ]; then
+if [ -n "$OPTFORCED" ]; then
   syncfiles
 else
-  read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1
+  read -p "This action may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1
   echo
   if [[ $REPLY =~ ^[Yy]$ ]]; then
     syncfiles

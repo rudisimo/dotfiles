@@ -5,32 +5,28 @@
 ### Using Git and the bootstrap script
 
 You can clone the repository wherever you want. The `bootstrap.sh` script will pull in the latest version and copy the files to your home folder.
-
 ```bash
-git clone https://github.com/rudisimo/dotfiles.git && cd dotfiles && sh bootstrap.sh
+git clone https://github.com/rudisimo/dotfiles.git && cd dotfiles && source bootstrap.sh
 ```
 
 To update, `cd` into your local `dotfiles` repository and then:
-
 ```bash
-sh bootstrap.sh -u
+source bootstrap.sh -u
 ```
 
 Alternatively, to update while avoiding the confirmation prompt:
-
 ```bash
-sh bootstrap.sh -uf
+source bootstrap.sh -uf
 ```
 
 ### Without using Git
 
 To install these dotfiles without Git:
-
 ```bash
 cd ~; curl -#L https://github.com/rudisimo/dotfiles/tarball/master | tar -xzv --strip-components 1 --exclude={README.md,LICENSE-MIT.txt,bootstrap.sh};
 ```
 
-**WARNING**: This will overwrite all of your existing dotfiles.
+**WARNING**: This may overwrite all of your existing dotfiles.
 
 To update later on, just run that command again.
 
@@ -65,7 +61,7 @@ Bugs and feature request are tracked on [GitHub](https://github.com/rudisimo/dot
 
 ## Author
 
-[![twitter/rudisimo](http://gravatar.com/avatar/e5214718b36ce8a431ecfc7855f0e969?s=16)](http://twitter.com/rudisimo "Follow @rudisimo on Twitter") [Rodolfo Puig](http://puig.io/)
+Rodolfo Puig [@rudisimo](http://twitter.com/rudisimo "Follow @rudisimo on Twitter")
 
 ## License
 
