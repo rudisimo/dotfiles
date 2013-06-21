@@ -24,7 +24,7 @@ syncfiles() {
   rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" \
         --exclude "README.md" --exclude "LICENSE-MIT.txt" -avb --no-perms \
         --backup-dir="$backupdir" . "$HOME"
-  [ "$(ls -A $backupdir)" ] && rm -qrf "$backupdir"
+  [ "$(ls -A $backupdir)" ] && rm -rf "$backupdir"
   [ -e "$HOME/.profile" ] && source "$HOME/.profile"
 }
 
