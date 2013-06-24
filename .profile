@@ -13,13 +13,5 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-# set PATH so it includes the local package bin directories if possible
-for bindir in "/usr/local/{bin,sbin}"; do
-   if [ -d "$bindir" ]; then
-       PATH="$bindir:$PATH"
-   fi
-done
-unset bindir
-
 # include user extras
 [ -e "$HOME/.extra" ] && source "$HOME/.extra"
