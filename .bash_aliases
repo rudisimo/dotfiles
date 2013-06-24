@@ -6,13 +6,13 @@ elif ls -G > /dev/null 2>&1; then # OSX `ls`
 fi
 
 # List all files colorized in long format
-alias l="ls -l ${colorflag}"
+alias l="ls -lh ${colorflag}"
 
 # List all files colorized in long format, including dot files
-alias la="ls -la ${colorflag}"
+alias la="ls -lah ${colorflag}"
 
 # List only directories
-alias lsd='ls -l ${colorflag} | grep "^d"'
+alias lsd='ls -lh ${colorflag} | grep "^d"'
 
 # Always use color output for `ls`
 alias ls="command ls ${colorflag}"
@@ -26,19 +26,14 @@ alias sgrep='grep -IERn --color=auto --exclude-dir=.svn --exclude-dir=.git'
 alias sudo='sudo '
 
 # Gzip-enabled `curl`
-alias gurl="curl --compressed"
+alias xurl="curl --compressed"
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias localip="ipconfig getifaddr en1"
 alias ips="ifconfig -a | grep -o 'inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\|[a-fA-F0-9:]\+\)' | sed -e 's/inet6* //'"
 
 # Enhanced WHOIS lookups
 alias whois="whois -h whois-servers.net"
-
-# View HTTP traffic
-alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
-alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 
 # Trim new lines and copy to clipboard
 alias c="tr -d '\n' | pbcopy"
@@ -61,3 +56,4 @@ alias map="xargs -n1"
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
     alias "$method"="lwp-request -m '$method'"
 done
+unset method
