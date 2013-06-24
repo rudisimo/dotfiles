@@ -5,7 +5,7 @@ OPTIND=1
 
 # usage description
 usage() {
-  cat << EOF
+    cat << EOF
 usage: $0 options
 
 This script installs the dotfiles into your home directory.
@@ -19,47 +19,45 @@ EOF
 
 # synchronize files to home directory
 syncfiles() {
-  local backupdir="$HOME/.dotfiles-$(date +%Y%m%d-%H%M%S)"
-  [ ! -d "$backupdir" ] && mkdir -p "$backupdir"
-  rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" \
-        --exclude "README.md" --exclude "LICENSE-MIT.txt" -avb --no-perms \
-        --backup-dir="$backupdir" . "$HOME"
-  [ "$(ls -A $backupdir)" ] && rm -rf "$backupdir"
-  [ -e "$HOME/.profile" ] && source "$HOME/.profile"
+    local backupdir="$HOME/.dotfiles-$(date +%Y%m%d-%H%M%S)"
+    rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" \
+          --exclude "README.md" --exclude "LICENSE-MIT.txt" -avb --no-perms \
+          --backup-dir="$backupdir" . "$HOME"
+    [ -e "$HOME/.profile" ] && source "$HOME/.profile"
 }
 
 # update the dotfiles repository
 updaterepo() {
-  git fetch -q origin >/dev/null
-  git pull -q origin master >/dev/null
+    git fetch -q origin >/dev/null
+    git pull -q origin master >/dev/null
 }
 
 OPTFORCED=
 while getopts "::hfu" option; do
-  case "$option" in
-    f)
-      OPTFORCED=1
-      ;;
-    u)
-      updaterepo
-      ;;
-    h)
-      usage
-      return
-      ;;
-    \?)
-      usage
-      return 1
-      ;;
-  esac
+    case "$option" in
+        f)
+            OPTFORCED=1
+            ;;
+        u)
+            updaterepo
+            ;;
+        h)
+            usage
+            return
+            ;;
+        \?)
+            usage
+            return 1
+            ;;
+    esac
 done
 
 if [ -n "$OPTFORCED" ]; then
-  syncfiles
-else
-  read -p "This action may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1
-  echo
-  if [[ $REPLY =~ ^[Yy]$ ]]; then
     syncfiles
-  fi
+else
+    read -p "This action may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        syncfiles
+    fi
 fi
