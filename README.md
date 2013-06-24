@@ -26,7 +26,7 @@ To install these dotfiles without Git:
 cd ~; curl -#L https://github.com/rudisimo/dotfiles/tarball/master | tar -xzv --strip-components 1 --exclude={README.md,LICENSE-MIT.txt,bootstrap.sh};
 ```
 
-**WARNING**: This may overwrite all of your existing dotfiles.
+**WARNING**: This may overwrite some of your existing dotfiles.
 
 To update later on, just run that command again.
 
