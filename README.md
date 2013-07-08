@@ -23,7 +23,7 @@ source bootstrap.sh -uf
 
 To install these dotfiles without Git:
 ```bash
-cd ~; curl -#L https://github.com/rudisimo/dotfiles/tarball/master | tar -xzv --strip-components 1 --exclude={README.md,LICENSE-MIT.txt,bootstrap.sh};
+cd ~; curl -#skL https://github.com/rudisimo/dotfiles/tarball/master | tar -xzv --strip-components 1 --exclude={README.md,LICENSE-MIT.txt,bootstrap.sh};
 ```
 
 **WARNING**: This may overwrite some of your existing dotfiles.
@@ -41,13 +41,13 @@ export EC2_HOME=~/.ec2
 export EC2_PRIVATE_KEY=`ls $EC2_HOME/pk-*.pem`
 export EC2_CERT=`ls $EC2_HOME/cert-*.pem`
 
+# EC2 binaries
+PATH=$PATH:$EC2_HOME/bin
+
 # Android settings
 export ANDROID_HOME=/opt/android-sdk
 export ANDROID_SDK=/opt/android-sdk
 export ANDROID_NDK=/opt/android-ndk
-
-# EC2 binaries
-PATH=$PATH:$EC2_HOME/bin
 
 # Android binaries
 PATH=$PATH:$ANDROID_SDK/platform-tools:$ANDROID_SDK/tools
