@@ -9,21 +9,19 @@ elif infocmp xterm-256color >/dev/null 2>&1; then
 fi
 
 if tput setaf 1 &> /dev/null; then
-    # to get a list of all possible colors run the following command:
-    # COLORS=$(tput colors);END=$(($COLORS-1)); for i in $(seq 0 $END); do echo -e "\e[38;05;${i}m${i}"; done | column -c $(tput cols) -s '  '; echo -e "\e[m"
+    # to get a list of all possible colors, use the following gist:
+    # https://gist.github.com/MicahElliott/719710
     tput sgr0
     if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
-        COLUSER=$(tput setaf 160)
-        COLHOST=$(tput setaf 208)
-        COLDIR=$(tput setaf 220)
-        COLSCM=$(tput setaf 33)
+        COLUSER=$(tput setaf 197)
+        COLDIR=$(tput setaf 148)
+        COLSCM=$(tput setaf 74)
         COLSEP=$(tput setaf 240)
     else
-        COLUSER=$(tput setaf 5)
-        COLHOST=$(tput setaf 4)
-        COLDIR=$(tput setaf 2)
-        COLSCM=$(tput setaf 1)
-        COLSEP=$(tput setaf 7)
+        COLUSER=$(tput setaf 13)
+        COLDIR=$(tput setaf 10)
+        COLSCM=$(tput setaf 13)
+        COLSEP=$(tput setaf 8)
     fi
     BOLD=$(tput bold)
     RESET=$(tput sgr0)
@@ -61,8 +59,8 @@ fi
 
 # set the prompt
 if [ "$color_prompt" = yes ]; then
-    PS1="${debian_chroot:+($debian_chroot)}\[${BOLD}${COLUSER}\]\u \[$COLSEP\]at \[$COLHOST\]\h \[$COLSEP\]in \[$COLDIR\]\w\[$COLSEP\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$COLSCM\]\$(parse_git_branch)\[$COLSEP\]\n\$ \[$RESET\]"
+    PS1="${debian_chroot:+($debian_chroot)}\[${BOLD}${COLUSER}\]\u \[$COLSEP\]in \[$COLDIR\]\w\[$COLSEP\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" using \")\[$COLSCM\]\$(parse_git_branch)\[$COLSEP\]\n⇒  \[$RESET\]"
 else
-    PS1="${debian_chroot:+($debian_chroot)}\u at \h in \w\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\$(parse_git_branch)\n\$ "
+    PS1="${debian_chroot:+($debian_chroot)}\u in \w\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" using \")\$(parse_git_branch)\n⇒  "
 fi
 unset color_prompt force_color_prompt

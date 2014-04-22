@@ -37,7 +37,7 @@ function dataurl() {
 # Start an HTTP server from a directory, optionally specifying the port
 function pyserver() {
     local port="${1:-8000}"
-    sleep 1 && open "http://localhost:${port}/" &
+    sleep 1 && open "http://127.0.0.1:${port}/" &
     # Set the default Content-Type to `text/plain` instead of `application/octet-stream`
     # And serve everything as UTF-8 (although not technically correct, this doesn’t break anything for binary files)
     python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port"
@@ -46,10 +46,9 @@ function pyserver() {
 # Start a PHP server from a directory, optionally specifying the port
 # (Requires PHP 5.4.0+.)
 function phpserver() {
-    local port="${1:-4000}"
-    local ip=$(ipconfig getifaddr en1)
-    sleep 1 && open "http://${ip}:${port}/" &
-    php -S "${ip}:${port}"
+    local port="${1:-8000}"
+    sleep 1 && open "http://localhost:${port}/" &
+    php -S "127.0.0.1:${port}"
 }
 
 # Compare original and gzipped file size
@@ -59,12 +58,6 @@ function gz() {
     local ratio=$(echo "$gzipsize * 100/ $origsize" | bc -l)
     printf "orig: %d bytes\n" "$origsize"
     printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio"
-}
-
-# Test if HTTP compression (RFC 2616 + SDCH) is enabled for a given URL.
-# Send a fake UA string for sites that sniff it instead of using the Accept-Encoding header. (Looking at you, ajax.googleapis.com!)
-function httpcompression() {
-    encoding="$(curl -LIs -H 'User-Agent: Mozilla/5 Gecko' -H 'Accept-Encoding: gzip,deflate,compress,sdch' "$1" | grep '^Content-Encoding:')" && echo "$1 is encoded using ${encoding#* }" || echo "$1 is not using any encoding"
 }
 
 # Syntax-highlight JSON strings or files
