@@ -18,7 +18,7 @@ Alternatively, to copy the files while avoiding the confirmation prompt:
 
 To install these dotfiles without `git`, run this command from your home directory:
 
-    curl -#skfL https://github.com/rudisimo/dotfiles/tarball/master | tar xzv --strip-components 1 --exclude={README.md,LICENSE-MIT.txt,bootstrap.sh};
+    curl -#skfL https://github.com/rudisimo/dotfiles/tarball/master | tar xzv --strip-components 1 --exclude={README.md,LICENSE,bootstrap.sh};
 
 **WARNING**: This may overwrite some of your existing dotfiles.
 
