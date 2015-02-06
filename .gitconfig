@@ -25,6 +25,9 @@
     rb = "!r() { git rebase -i HEAD~$1; }; r"
     # Removes an entire commit by SHA
     undo = "!u() { git rebase -p --onto $1^ $1; }; u"
+    # Moves through your commit history
+    prev = checkout HEAD^1
+    next = "!sh -c 'git log --reverse --pretty=%H master | awk \"/$(git rev-parse HEAD)/{getline;print}\" | xargs git checkout'"
 [apply]
     # Detect whitespace errors when applying a patch
     whitespace = fix
