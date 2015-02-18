@@ -30,7 +30,7 @@
     next = "!sh -c 'git log --reverse --pretty=%H master | awk \"/$(git rev-parse HEAD)/{getline;print}\" | xargs git checkout'"
 [apply]
     # Detect whitespace errors when applying a patch
-    whitespace = fix
+    whitespace = warn
 [core]
     # Use custom `.gitignore` and `.gitattributes`
     excludesfile = ~/.gitignore
